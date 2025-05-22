@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Riddle 1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>1. Wings of dreams and eyes on the sky,</h2>
+  <p>He’s aiming high, he wants to fly.<br>
+  With duty and honor in his heart,<br>
+  Find him before he takes off to start!</p>
+  <form id="answer-form">
+    <input type="text" placeholder="Enter your answer" id="answer"/>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="timer"></p>
+  <script>
+    let timeLeft = 3600;
+    const timerElement = document.getElementById('timer');
+    const form = document.getElementById('answer-form');
+
+    function updateTimer() {
+      const mins = Math.floor(timeLeft / 60);
+      const secs = timeLeft % 60;
+      timerElement.textContent = `Time Remaining: ${mins}:${secs.toString().padStart(2, '0')}`;
+      if (timeLeft > 0) {
+        timeLeft--;
+        setTimeout(updateTimer, 1000);
+      } else {
+        alert('Time’s up! Restarting...');
+        window.location.href = 'index.html';
+      }
+    }
+
+    updateTimer();
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const answer = document.getElementById('answer').value.trim();
+      if (answer.toLowerCase() === "arvind123") {
+        window.location.href = "riddle2.html";
+      } else {
+        alert("Wrong answer, try again!");
+      }
+    });
+  </script>
+</body>
+</html>
